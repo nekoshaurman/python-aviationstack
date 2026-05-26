@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=80.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "timofeevPy"
+version = "1.0.0"
+description = "Персональный авиационный помощник в терминале"
+requires-python = ">=3.10"
+dependencies = [
+    "click==8.3.1",
+    "rich==14.3.3",
+    "requests==2.32.5",
+    "python-dotenv==1.2.2",
+    "pytest==9.0.3",
+]
+
+[project.scripts]
+aero-claude  = "claude.main:cli"
+aero-openai  = "openai_edition.main:cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["claude*", "openai_edition*"]
+
+[tool.pytest.ini_options]
+markers = [
+    "live_api: tests that perform real requests to AviationStack and spend quota",
+]
